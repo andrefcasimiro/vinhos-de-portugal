@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config({ path: './.env' })
 
 const connection = {
   host: process.env.DB_HOST,

@@ -8,6 +8,8 @@ export const dictionaryKeys = {
   ABOUT: "about",
   SIGN_UP: "sign_up",
   LOGIN: "login",
+  // Buttons
+  ADD_WINE: "add_wine",
 }
 
 export const dictionary = {
@@ -35,4 +37,9 @@ export const dictionary = {
       portuguese: "Entrar",
     },
   },
+  // Buttons
+  add_wine: {
+    english: "Add wine",
+    portuguese: "Adicionar vinho",
+  }
 }

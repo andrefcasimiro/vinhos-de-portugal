@@ -1,6 +1,7 @@
 // @flow
 import { createGlobalStyle } from "styled-components"
 import { defaultFont } from "./config"
+import theme from "./theme"
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -14,6 +15,8 @@ export const GlobalStyle = createGlobalStyle`
 
 
   body {
+    background: ${theme.color.lightCreme};
+
     margin: 0;
     font-size: 1.6rem;
 

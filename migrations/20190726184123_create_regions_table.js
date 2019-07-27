@@ -1,11 +1,12 @@
 exports.up = (knex) =>
-  knex.schema.createTable('songs', (table) => {
+  knex.schema.createTable('regions', (table) => {
     table.increments('id')
     table.string('name')
-    table.string('author')
-    table.string('genre')
-    table.integer('length')
-    table.integer('release_date')
+    table
+      .integer('country_id')
+      .unsigned()
+      .references('id')
+      .inTable('countries')
   }).then(() => console.log('Table created.'))
     .catch((error) => {
       console.log(error)
@@ -16,4 +17,4 @@ exports.up = (knex) =>
     })
 
 exports.down = (knex) =>
-  knex.schema.dropTableIfExists('songs')
+  knex.schema.dropTableIfExists('regions')
