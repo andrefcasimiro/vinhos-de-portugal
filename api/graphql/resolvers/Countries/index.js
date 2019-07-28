@@ -1,8 +1,8 @@
-import { get, list } from "../../../actions/wines"
+import { get, list, add } from "../../../actions/countries"
 
 export default {
   Query: {
-    getWine: (root, args) => {
+    getCountry: (root, args) => {
       return new Promise((resolve, reject) => {
         const { id } = args
 
@@ -19,7 +19,7 @@ export default {
         resolve(result)
       })
     },
-    listWines: (root, args) => {
+    listCountries: (root, args) => {
       return new Promise((resolve, reject) => {
         const result = list()
 
@@ -30,5 +30,18 @@ export default {
         resolve(result)
       })
     },
-  }
+  },
+  Mutation: {
+    addCountry: (root, input) => {
+      return new Promise((resolve, reject) => {
+        const result = add(input)
+
+        if (result && result.error) {
+          reject(result.error)
+        }
+
+        resolve(result)
+      })
+    },
+  },
 }

@@ -6,20 +6,20 @@ const knexConnection = Knex(development)
 
 Model.knex(knexConnection)
 
-class Wine extends Model {
+class Country extends Model {
   static get tableName() {
-    return 'wines'
+    return 'countries'
   }
 
   static get relationMappings() {
     return {
-      // A wine belongs to a region
       region: {
-        relation: Model.BelongsToOneRelation,
+        // A country has many regions
+        relation: Model.HasManyRelation,
         modelClass: Region,
         join: {
-          from: 'wines.region_id',
-          to: 'region.id',
+          from: 'country.id',
+          to: 'regions.country_id',
         },
       },
     }
@@ -55,24 +55,24 @@ class Region extends Model {
   }
 }
 
-class Country extends Model {
+class Wine extends Model {
   static get tableName() {
-    return 'countries'
+    return 'wines'
   }
 
   static get relationMappings() {
     return {
+      // A wine belongs to a region
       region: {
-        // A country has many regions
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Region,
         join: {
-          from: 'country.id',
-          to: 'regions.country_id',
+          from: 'wines.region_id',
+          to: 'region.id',
         },
       },
     }
   }
 }
 
-module.exports = { Wine, Region, Country }
+module.exports = { Country, Region, Wine }

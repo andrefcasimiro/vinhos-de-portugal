@@ -12,8 +12,8 @@ export default `
   }
 
   type Query {
-    wine(id: Int!): Wine
-    wines: [Wine]
+    getWine(id: Int!): Wine
+    listWines: [Wine]
   }
 
   type Mutation {
@@ -24,7 +24,7 @@ export default `
     name: String!
     type: String!
     producer: String!
-    region: String!
+    region_id: String!
     grape: String!
     alcohol: Int!
     price_range_per_750_ml_bottle: Int
