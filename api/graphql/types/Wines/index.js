@@ -4,7 +4,7 @@ export default `
     name: String
     type: String
     producer: String
-    region: String
+    region_id: Int
     grape: String
     alcohol: Int
     price_range_per_750_ml_bottle: Int
@@ -24,7 +24,7 @@ export default `
     name: String!
     type: String!
     producer: String!
-    region_id: String!
+    region_id: Int!
     grape: String!
     alcohol: Int!
     price_range_per_750_ml_bottle: Int

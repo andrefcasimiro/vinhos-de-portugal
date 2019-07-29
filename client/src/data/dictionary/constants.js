@@ -10,13 +10,15 @@ export const dictionaryKeys = {
   LOGIN: "login",
   // Buttons
   ADD_WINE: "add_wine",
+  ADD_COUNTRY: "add_country",
+  ADD_REGION: "add_region",
 }
 
 export const dictionary = {
   // App logo
   logo: {
-    english: "Wines of Portugal",
-    portuguese: "Vinhos de Portugal",
+    english: "The Good Drinker",
+    portuguese: "O Bom Bebedor",
   },
   // Navlinks
   navlinks: {
@@ -41,5 +43,13 @@ export const dictionary = {
   add_wine: {
     english: "Add wine",
     portuguese: "Adicionar vinho",
-  }
+  },
+  add_country: {
+    english: "Add country",
+    portuguese: "Adicionar país",
+  },
+  add_region: {
+    english: "Add region",
+    portuguese: "Adicionar região",
+  },
 }

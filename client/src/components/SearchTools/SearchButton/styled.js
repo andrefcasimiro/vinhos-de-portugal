@@ -7,8 +7,8 @@ export const StyledButton = styled.button`
   background: ${theme.color.lightCreme};
   font-size: 1.4rem;
   border-radius: .2rem;
-  padding: 1rem;
-  margin: 1rem;
+  padding: .5rem;
+  margin: .5rem;
   border: .1rem solid ${theme.color.darkGray};
   color: ${theme.color.veryDarkerGray};
   cursor: pointer;

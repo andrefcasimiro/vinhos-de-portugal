@@ -28,7 +28,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-upload-client": "^11.0.0",
     "fontfaceobserver": "^2.1.0",
+    "graphql-tag": "^2.10.1",
+    "react-apollo": "^2.5.8",
     "reactn": "^2.1.5"
   }
 }

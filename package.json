@@ -29,6 +29,7 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.2",
     "concurrently": "^4.1.1",
+    "cors": "^2.8.5",
     "express-graphql": "^0.9.0",
     "graphql": "^14.4.2",
     "graphql-tools": "^4.0.5",

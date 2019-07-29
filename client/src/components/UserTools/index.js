@@ -19,6 +19,12 @@ const UserTools = ({ children }: Props) => {
       <Button>
         {getText(language, dictionaryKeys.ADD_WINE)}
       </Button>
+      <Button>
+        {getText(language, dictionaryKeys.ADD_COUNTRY)}
+      </Button>
+      <Button>
+        {getText(language, dictionaryKeys.ADD_REGION)}
+      </Button>
     </Wrap>
   )
 }

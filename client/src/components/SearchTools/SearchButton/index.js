@@ -8,7 +8,8 @@ type Props = {|
   children: React.Node,
 |}
 
-const Button = ({ children }: Props) => {
+const SearchButton = ({ children }: Props) => {
+
   return (
     <StyledButton>
       {children}
@@ -16,4 +17,4 @@ const Button = ({ children }: Props) => {
   )
 }
 
-export default Button
+export default SearchButton
