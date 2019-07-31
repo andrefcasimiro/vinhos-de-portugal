@@ -72,7 +72,7 @@ const Form = ({ close, data, onChange, values }: Props) => {
         onCompleted={data => close()}
         onError={errors => {
           const err = errors.graphQLErrors.map(m => m.message)
-          console.log('errors: ', errors)
+
           return err.map(error => console.log(error))
         }}
         refetchQueries={[{
