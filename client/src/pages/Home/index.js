@@ -37,7 +37,6 @@ const Home = () => {
         <WinesList />
       </Content>
     </React.Fragment>
-
   )
 }
 

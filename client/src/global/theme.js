@@ -6,6 +6,7 @@ const theme = {
     veryDarkerGray: "#6E6B68",
     darkerGray: "#95918C",
     darkGray: "#d7d1c9",
+    red: "#a80f0f",
     darkRed: "#6D0000",
     darkerRed: "#5c0000",
     creme: "#f5efe3",

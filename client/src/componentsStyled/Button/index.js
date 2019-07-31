@@ -6,11 +6,12 @@ import {
 
 type Props = {|
   children: React.Node,
+  onClick: Function,
 |}
 
-const Button = ({ children }: Props) => {
+const Button = ({ children, onClick }: Props) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={onClick}>
       {children}
     </StyledButton>
   )

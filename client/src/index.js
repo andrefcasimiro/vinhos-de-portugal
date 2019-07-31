@@ -38,7 +38,7 @@ if (element) {
     <ApolloProvider client={client}>
       <Router>
         <App />
-      </Router>,
+      </Router>
     </ApolloProvider>,
     element,
   )

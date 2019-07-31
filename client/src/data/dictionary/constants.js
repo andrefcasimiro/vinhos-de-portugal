@@ -12,6 +12,10 @@ export const dictionaryKeys = {
   ADD_WINE: "add_wine",
   ADD_COUNTRY: "add_country",
   ADD_REGION: "add_region",
+  // Form Labels
+  COUNTRY_NAME: "country_name",
+  // Form Errors
+  COUNTRY_ALREADY_EXISTS: "country_already_exists",
 }
 
 export const dictionary = {
@@ -51,5 +55,15 @@ export const dictionary = {
   add_region: {
     english: "Add region",
     portuguese: "Adicionar região",
+  },
+  // Form Labels
+  country_name: {
+    english: "Country Name",
+    portuguese: "Nome do País",
+  },
+  // Form Errors
+  country_already_exists: {
+    english: "The country you're trying to add already exists.",
+    portuguese: "O país introduzido já existe.",
   },
 }
