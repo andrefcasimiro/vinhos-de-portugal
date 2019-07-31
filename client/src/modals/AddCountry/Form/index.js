@@ -81,7 +81,7 @@ const Form = ({ close, data, onChange, values }: Props) => {
         }]}
       >
         {postMutation => (
-          <Submit onClick={postMutation} /*disabled={errors.length}*/>
+          <Submit onClick={postMutation} disabled={errors.length}>
             {getText(language, dictionaryKeys.ADD_COUNTRY)}
           </Submit>
         )}

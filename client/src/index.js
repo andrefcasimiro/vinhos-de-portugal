@@ -7,6 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createUploadLink } from 'apollo-upload-client'
 import App from "containers/App"
 import { languages } from "data/languages/constants"
+import { sessionItems } from "data/sessions/constants"
 import FontFaceObserver from "fontfaceobserver"
 import { defaultFont } from "global/config"
 import "assets/fonts/index.css"
@@ -28,7 +29,7 @@ fontObserver.load()
   .catch(e => console.log(e.message))
 
 setGlobal({
-  language: languages.PORTUGUESE,
+  language: sessionStorage.getItem(sessionItems.LANGUAGE) || languages.PORTUGUESE,
 })
 
 const element = document.getElementById("root")
