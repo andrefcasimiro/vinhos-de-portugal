@@ -1,7 +1,6 @@
 // @flow
-import React from "react"
-import withOpen from "hocs/withOpen"
-import ContextMenu from "components/ContextMenu"
+import React, { useGlobal } from "reactn"
+import { compose, type HOC, withStateHandlers, withHandlers } from "recompose"
 import type { Country } from "data/countries/types"
 import Checkbox from "components/Checkbox"
 
@@ -11,18 +10,39 @@ type Props = {|
   },
 |}
 
-const CountryMenu = ({ data }: Props) => {
+const CountryMenu = ({ data, countries, handleFilter }) => {
   if (!data) {
     return null
   }
 
+  console.log('select countries: ', countries)
+
   return (
-    data.listCountries.map((country, index) => 
-      <Checkbox>
+    data.listCountries.map((country, index) =>
+      <Checkbox key={index} onChange={handleFilter}>
         {country.name}
       </Checkbox>
     )
   )
 }
 
-export default CountryMenu
+const enhancer: HOC<*, Props> = compose(
+  withStateHandlers(
+    {
+      countries: [],
+    },
+    {
+      setCountries: props => countries => ({ countries }),
+    },
+  ),
+  withHandlers({
+    handleFilter: props => country => {
+      if (props.countries.includes(country)) {
+        return props.setCountries(props.countries.filter(c => c !== country))
+      }
+      return props.setCountries(props.countries.concat(country))
+    },
+  }),
+)
+
+export default enhancer(CountryMenu)

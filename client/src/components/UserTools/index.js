@@ -1,8 +1,6 @@
 // @flow
-import React, { useGlobal } from "reactn"
+import React from "reactn"
 import AddCountry from "components/Buttons/AddCountry"
-import { getText } from "data/dictionary/helpers"
-import { dictionaryKeys } from "data/dictionary/constants"
 import {
   Wrap,
 } from "./styled"
@@ -12,7 +10,6 @@ type Props = {
 }
 
 const UserTools = ({ children }: Props) => {
-  const [language] = useGlobal("language")
 
   return (
     <Wrap>

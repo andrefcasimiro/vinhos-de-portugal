@@ -1,8 +1,6 @@
 // @flow
 import React, { useGlobal } from "reactn"
 import CountryFilter from "components/Filters/CountryFilter"
-import { getText } from "data/dictionary/helpers"
-import { dictionaryKeys } from "data/dictionary/constants"
 import {
   Wrap,
   Title,
@@ -15,15 +13,19 @@ type Props = {|
 |}
 
 const SearchTools = ({ children }: Props) => {
-  const [language] = useGlobal("language")
+  const [searchState, setSearchState] = useGlobal("searchState")
 
+  console.log(
+    'search state:',
+    searchState,
+  )
   return (
     <React.Fragment>
       <Wrap>
         <Title>Discover wines</Title>
         <SearchInput />
         <SearchInputButton />
-        <CountryFilter />
+        <CountryFilter searchState={searchState} filter={setSearchState} />
       </Wrap>
     </React.Fragment>
   )

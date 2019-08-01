@@ -25,3 +25,11 @@ export const Label = styled.p`
   margin-bottom: .5rem;
   color: ${theme.color.veryDarkerGray};
 `
+
+export const CheckboxInput = styled.div`
+  border: .1rem solid ${theme.color.veryDarkerGray};
+  background: ${theme.color.white};
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+`

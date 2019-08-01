@@ -26,7 +26,6 @@ export const Content = styled.div`
   margin-left: -.2rem;
   margin-top: .1rem;
 
-  
   & > *:first-child {
     &:hover {
       border-right: .1rem solid ${theme.color.darkGray};

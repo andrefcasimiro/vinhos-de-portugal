@@ -1,12 +1,9 @@
 // @flow
-import React, { useGlobal } from "reactn"
+import React from "reactn"
 import { compose } from "recompose"
 import { graphql } from "react-apollo"
 import { listWinesQuery } from "data/wines/queries"
 import withData from "hocs/withData"
-import Button from "componentsStyled/Button"
-import { getText } from "data/dictionary/helpers"
-import { dictionaryKeys } from "data/dictionary/constants"
 import {
   Wrap,
   TableWrap,

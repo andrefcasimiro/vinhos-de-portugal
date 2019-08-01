@@ -1,10 +1,9 @@
 // @flow
-import React from "react"
+import React from "reactn"
 import { compose, type HOC } from "recompose"
 import ListCountries from "queryComponents/ListCountries"
 import withOpen from "hocs/withOpen"
 import SearchButton from "components/SearchButton"
-import Controls from "components/Controls"
 import Menu from "../_Menu"
 import CountryMenu from "./CountryMenu"
 
@@ -13,7 +12,6 @@ type Props = {|
 |}
 
 const CountryFilter = ({ children, isOpen, toggleOpen }) => {
-
   return (
     <React.Fragment>
       <Menu isOpen={isOpen} close={toggleOpen}>

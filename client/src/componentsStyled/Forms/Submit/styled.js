@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components"
 import theme from "global/theme"
-import Button from "componentsStyled/Button"
 
 export const SubmitWrap = styled.div`
   display: flex;

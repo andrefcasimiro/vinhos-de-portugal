@@ -1,24 +1,49 @@
 // @flow
 import React from "react"
-import withOpen from "hocs/withOpen"
-import ContextMenu from "components/ContextMenu"
-import type { Country } from "data/countries/types"
+import { compose, type HOC, withStateHandlers, withHandlers } from "recompose"
+import Checked from "assets/svgs/Checked"
 import {
   CheckboxWrap,
   Label,
+  CheckboxInput,
 } from "./styled"
 
 type Props = {|
   children: React.Node,
+  isChecked: boolean,
+  toggleIsChecked: Function,
+  onChange: Function,
 |}
 
-const Checkbox = ({ children }: Props) => {
-
+const Checkbox = ({ children, isChecked, handleSelect }) => {
   return (
-    <CheckboxWrap>
+    <CheckboxWrap onClick={() => handleSelect(children)}>
       <Label>{children}</Label>
+      <CheckboxInput>
+        {isChecked && <Checked />}
+      </CheckboxInput>
     </CheckboxWrap>
   )
 }
 
-export default Checkbox
+const enhancer: HOC<*, Props> = compose(
+  withStateHandlers(
+    {
+      isChecked: false,
+    },
+    {
+      toggleIsChecked: (props) => (isChecked: boolean) => ({ isChecked: !props.isChecked }),
+    },
+  ),
+  withHandlers({
+    handleSelect: props => event => {
+      if (props.onChange) {
+        props.onChange(event)
+      }
+
+      return props.toggleIsChecked()
+    }
+  }),
+)
+
+export default enhancer(Checkbox)
