@@ -29,7 +29,7 @@ fontObserver.load()
   .catch(e => console.log(e.message))
 
 setGlobal({
-  language: sessionStorage.getItem(sessionItems.LANGUAGE) || languages.PORTUGUESE,
+  language: localStorage.getItem(sessionItems.LANGUAGE) || languages.PORTUGUESE,
 })
 
 const element = document.getElementById("root")

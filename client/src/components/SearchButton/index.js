@@ -6,12 +6,14 @@ import {
 
 type Props = {|
   children: React.Node,
+  onClick: Function,
+  active?: boolean,
 |}
 
-const SearchButton = ({ children }: Props) => {
+const SearchButton = ({ children, onClick, active }: Props) => {
 
   return (
-    <StyledButton>
+    <StyledButton onClick={onClick} active={active}>
       {children}
     </StyledButton>
   )

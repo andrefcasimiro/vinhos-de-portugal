@@ -23,13 +23,13 @@ export const Tile = styled.div`
   justify-content: flex-start;
   align-items: center;
   transition: .2s all;
+  z-index: ${theme.zIndices.productTiles};
 
   &:hover {
     transform: translateY(-0.1rem);
     transform: scale(1.02);
     box-shadow: 0 1rem 5rem 0 rgba(0,0,0,0.1);
     position: relative;
-    z-index: 10;
     cursor: pointer;
     border: .1rem solid ${theme.color.darkGray};
   }

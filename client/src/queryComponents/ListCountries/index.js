@@ -1,22 +1,22 @@
 import React from "react"
 import { Query } from "react-apollo"
 import { listCountriesQuery } from "data/countries/queries"
-import Spinner from "componentsStyled/Spinner"
 
 type Props = {
   children: React.Node,
+  variables: Object,
 }
 
-const ListCountries = ({ children }: Props) => {
+const ListCountries = ({ children, variables }: Props) => {
 
   return (
-    <Query query={listCountriesQuery}>
+    <Query query={listCountriesQuery} variables={variables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading || !data) {
-          return <Spinner />
+          return null
         }
 
-        return React.cloneElement(children, {data})
+        return React.cloneElement(children, { data })
       }}
     </Query>
   )

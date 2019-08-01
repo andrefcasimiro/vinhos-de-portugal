@@ -1,5 +1,5 @@
 // @flow
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import theme from "global/theme"
 
 export const StyledButton = styled.button`
@@ -16,4 +16,8 @@ export const StyledButton = styled.button`
   &:hover {
     background: ${theme.color.lighterCreme};
   }
+
+  ${p => p.active && css`
+      background: ${theme.color.lighterCreme};
+    `}
 `

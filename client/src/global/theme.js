@@ -1,6 +1,11 @@
 // @flow
 
 const theme = {
+  zIndices: {
+    productTiles: 1,
+    contextMenu: 100,
+    controlsMenu: 101,
+  },
   color: {
     primaryDark: "#050300",
     veryDarkerGray: "#6E6B68",

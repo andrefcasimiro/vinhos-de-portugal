@@ -1,6 +1,6 @@
 // @flow
 import React, { useGlobal } from "reactn"
-import SearchButton from "./SearchButton"
+import CountryFilter from "components/Filters/CountryFilter"
 import { getText } from "data/dictionary/helpers"
 import { dictionaryKeys } from "data/dictionary/constants"
 import {
@@ -21,10 +21,9 @@ const SearchTools = ({ children }: Props) => {
     <React.Fragment>
       <Wrap>
         <Title>Discover wines</Title>
-        <SearchInput /><SearchInputButton />
-        <SearchButton>
-          Country
-        </SearchButton>
+        <SearchInput />
+        <SearchInputButton />
+        <CountryFilter />
       </Wrap>
     </React.Fragment>
   )
