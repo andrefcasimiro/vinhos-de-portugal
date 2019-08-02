@@ -1,6 +1,6 @@
 // @flow
-import React from "reactn"
-import { compose, type HOC } from "recompose"
+import React from "react"
+import { compose, type HOC, withStateHandlers } from "recompose"
 import ListCountries from "queryComponents/ListCountries"
 import withOpen from "hocs/withOpen"
 import SearchButton from "components/SearchButton"
@@ -11,12 +11,12 @@ type Props = {|
   children: React.Node,
 |}
 
-const CountryFilter = ({ children, isOpen, toggleOpen }) => {
+const CountryFilter = ({ children, isOpen, toggleOpen, filters, updateFilter }) => {
   return (
     <React.Fragment>
-      <Menu isOpen={isOpen} close={toggleOpen}>
+      <Menu isOpen={isOpen} close={toggleOpen} parameterKey="country" filters={filters}>
         <ListCountries>
-          <CountryMenu />
+          <CountryMenu updateFilter={updateFilter} />
         </ListCountries>
       </Menu>
       <SearchButton active={isOpen} onClick={toggleOpen}>Country</SearchButton>
@@ -26,6 +26,14 @@ const CountryFilter = ({ children, isOpen, toggleOpen }) => {
 
 const enhancer: HOC<*, Props> = compose(
   withOpen,
+  withStateHandlers(
+    {
+      filters: {},
+    },
+    {
+      updateFilter: () => (filters) => ({ filters }),
+    }
+  )
 )
 
 export default enhancer(CountryFilter)

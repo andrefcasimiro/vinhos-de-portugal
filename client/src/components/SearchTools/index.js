@@ -1,6 +1,8 @@
 // @flow
-import React, { useGlobal } from "reactn"
+import React from "react"
+import { connect } from "react-redux"
 import CountryFilter from "components/Filters/CountryFilter"
+import { selectSearchParameters } from "data/search/selectors"
 import {
   Wrap,
   Title,
@@ -12,23 +14,26 @@ type Props = {|
   children: React.Node,
 |}
 
-const SearchTools = ({ children }: Props) => {
-  const [searchState, setSearchState] = useGlobal("searchState")
+const SearchTools = ({ children, searchParameters }: Props) => {
+  console.log('searchParameters: ', searchParameters)
 
-  console.log(
-    'search state:',
-    searchState,
-  )
   return (
     <React.Fragment>
       <Wrap>
         <Title>Discover wines</Title>
         <SearchInput />
         <SearchInputButton />
-        <CountryFilter searchState={searchState} filter={setSearchState} />
+        <CountryFilter />
       </Wrap>
     </React.Fragment>
   )
 }
 
-export default SearchTools
+const mapStateToProps = state => {
+
+  return {
+    searchParameters: selectSearchParameters(state),
+  }
+}
+
+export default connect(mapStateToProps, {})(SearchTools)

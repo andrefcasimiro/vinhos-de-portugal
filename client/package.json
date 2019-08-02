@@ -35,6 +35,10 @@
     "fontfaceobserver": "^2.1.0",
     "graphql-tag": "^2.10.1",
     "react-apollo": "^2.5.8",
-    "reactn": "^2.1.5"
+    "react-redux": "^7.1.0",
+    "reactn": "^2.1.5",
+    "redux": "^4.0.4",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0"
   }
 }

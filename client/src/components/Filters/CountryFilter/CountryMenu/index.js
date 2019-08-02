@@ -1,6 +1,10 @@
 // @flow
-import React, { useGlobal } from "reactn"
-import { compose, type HOC, withStateHandlers, withHandlers } from "recompose"
+import React from "react"
+import { connect } from "react-redux"
+import {store} from "global/store"
+import { compose, type HOC, withStateHandlers, withHandlers, lifecycle } from "recompose"
+import { applySearch } from "data/search/actions"
+import { selectSearchParameters } from "data/search/selectors"
 import type { Country } from "data/countries/types"
 import Checkbox from "components/Checkbox"
 
@@ -8,14 +12,13 @@ type Props = {|
   data: {
     listCountries: Country[],
   },
+  updateFilter: Function,
 |}
 
 const CountryMenu = ({ data, countries, handleFilter }) => {
   if (!data) {
     return null
   }
-
-  console.log('select countries: ', countries)
 
   return (
     data.listCountries.map((country, index) =>
@@ -26,7 +29,19 @@ const CountryMenu = ({ data, countries, handleFilter }) => {
   )
 }
 
+const mapStateToProps = state => {
+
+  return {
+    searchParameters: selectSearchParameters(state),
+  }
+}
+
+const mapDispatchToProps = {
+  applySearch,
+}
+
 const enhancer: HOC<*, Props> = compose(
+  connect(mapStateToProps, mapDispatchToProps),
   withStateHandlers(
     {
       countries: [],
@@ -37,10 +52,14 @@ const enhancer: HOC<*, Props> = compose(
   ),
   withHandlers({
     handleFilter: props => country => {
-      if (props.countries.includes(country)) {
-        return props.setCountries(props.countries.filter(c => c !== country))
-      }
-      return props.setCountries(props.countries.concat(country))
+      const payload = props.countries.includes(country)
+        ? props.countries.filter(c => c !== country)
+        : props.countries.concat(country)
+
+      // Update internal state
+      props.setCountries(payload)
+      // Update external state
+      props.updateFilter(payload)
     },
   }),
 )

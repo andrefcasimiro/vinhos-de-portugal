@@ -1,6 +1,7 @@
 import React, { setGlobal } from "reactn"
 import { render } from "react-dom"
 import { BrowserRouter as Router } from "react-router-dom"
+// Apollo
 import { ApolloClient } from "apollo-client"
 import { ApolloProvider } from "react-apollo"
 import { InMemoryCache } from 'apollo-cache-inmemory'
@@ -8,6 +9,11 @@ import { createUploadLink } from 'apollo-upload-client'
 import App from "containers/App"
 import { languages } from "data/languages/constants"
 import { sessionItems } from "data/sessions/constants"
+// Redux
+import { Provider } from "react-redux"
+import { store, persistor } from "./global/store"
+import { PersistGate } from "redux-persist/es/integration/react"
+// Font
 import FontFaceObserver from "fontfaceobserver"
 import { defaultFont } from "global/config"
 import "assets/fonts/index.css"
@@ -37,9 +43,13 @@ const element = document.getElementById("root")
 if (element) {
   render(
     <ApolloProvider client={client}>
-      <Router>
-        <App />
-      </Router>
+      <PersistGate persistor={persistor} loading={null}>
+        <Provider store={store}>
+          <Router>
+            <App />
+          </Router>
+        </Provider>
+      </PersistGate>
     </ApolloProvider>,
     element,
   )
