@@ -2,10 +2,8 @@ import React, { setGlobal } from "reactn"
 import { render } from "react-dom"
 import { BrowserRouter as Router } from "react-router-dom"
 // Apollo
-import { ApolloClient } from "apollo-client"
 import { ApolloProvider } from "react-apollo"
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import { createUploadLink } from 'apollo-upload-client'
+import client from "global/graphql/apolloClient"
 import App from "containers/App"
 import { languages } from "data/languages/constants"
 import { sessionItems } from "data/sessions/constants"
@@ -17,14 +15,6 @@ import { PersistGate } from "redux-persist/es/integration/react"
 import FontFaceObserver from "fontfaceobserver"
 import { defaultFont } from "global/config"
 import "assets/fonts/index.css"
-
-const graphqlURI = `http://localhost:5000/graphql`
-const headers = `authorization: Bearer`
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: createUploadLink({ uri: graphqlURI, headers }),
-})
 
 const fontObserver = new FontFaceObserver(defaultFont, {})
 fontObserver.load()

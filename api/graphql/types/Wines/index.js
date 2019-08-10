@@ -13,11 +13,15 @@ export default `
 
   type Query {
     getWine(id: Int!): Wine
-    listWines: [Wine]
+    listWines(filter: ListWinesFilter): [Wine]
   }
 
   type Mutation {
     addWine(input: AddWineInput): Wine
+  }
+
+  input ListWinesFilter {
+    countries: [Int]
   }
 
   input AddWineInput {

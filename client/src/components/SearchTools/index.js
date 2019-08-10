@@ -15,7 +15,6 @@ type Props = {|
 |}
 
 const SearchTools = ({ children, searchParameters }: Props) => {
-  console.log('searchParameters: ', searchParameters)
 
   return (
     <React.Fragment>

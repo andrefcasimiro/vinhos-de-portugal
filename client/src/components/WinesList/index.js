@@ -1,9 +1,10 @@
 // @flow
 import React from "reactn"
-import { compose } from "recompose"
-import { graphql } from "react-apollo"
+import { compose, type HOC } from "recompose"
+import withQuery from "hocs/withQuery"
+import { connect } from "react-redux"
 import { listWinesQuery } from "data/wines/queries"
-import withData from "hocs/withData"
+import { selectSearchParameters } from "data/search/selectors"
 import {
   Wrap,
   TableWrap,
@@ -15,17 +16,14 @@ import {
 } from "./styled"
 
 const WinesList = ({ children, data }) => {
-  // const [language] = useGlobal("language")
-  const { listWines } = data
-
-  if (!listWines) {
+  if (!data) {
     return <p>Failed to load data.</p>
   }
 
   return (
     <Wrap>
       <TableWrap>
-        {listWines.map((wine, index) =>
+        {data.map((wine, index) =>
           <Tile key={index}>
             <Section>
               <Title>{wine.name}</Title>
@@ -39,9 +37,23 @@ const WinesList = ({ children, data }) => {
   )
 }
 
-const enhancer = compose(
-  graphql(listWinesQuery),
-  withData,
+const mapStateToProps = state => {
+
+  return {
+    searchParameters: selectSearchParameters(state),
+  }
+}
+
+const mapDispatchToProps = {}
+
+const enhancer: HOC<*, {}> = compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withQuery(
+    listWinesQuery,
+    {
+      variables: (props) => ({ filter: props.searchParameters }),
+    },
+  ),
 )
 
 export default enhancer(WinesList)

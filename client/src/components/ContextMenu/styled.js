@@ -5,9 +5,8 @@ import theme from "global/theme"
 export const Wrapper = styled.div`
   position: relative;
   margin-top: 3.5rem;
-  * {
-    z-index: ${theme.zIndices.contextMenu};
-  }
+  z-index: ${theme.zIndices.contextMenu};
+
 `
 
 export const Content = styled.div`

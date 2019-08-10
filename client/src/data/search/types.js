@@ -1,7 +1,4 @@
-import type {
-  Country,
-} from "data/countries/types"
-
+// @flow
 export type SearchParameters = {
-  countries: Array<Country>,
+  countries: Array<number>,
 }

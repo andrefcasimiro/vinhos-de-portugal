@@ -4,12 +4,12 @@ import theme from "global/theme"
 
 export const Wrap = styled.div`
   display: flex;
+  position: relative;
   flex-direction: row;
   background: ${theme.color.lightCreme};
   border: .05rem solid ${theme.color.darkGray};
   min-height: 1.5rem;
   justify-content: flex-start;
-  z-index: 2;
 `
 
 export const Title = styled.h2`
@@ -42,10 +42,5 @@ export const SearchInputButton = styled.button`
   background: ${theme.color.lightCreme};
   margin: 0 2rem 0 0;
   border: 0.1rem solid ${theme.color.darkGray};
-
   cursor: pointer;
-
-  &:hover {
-    background: ${theme.color.lighterCreme};
-  }
 `

@@ -68,7 +68,7 @@ class Wine extends Model {
         modelClass: Region,
         join: {
           from: 'wines.region_id',
-          to: 'region.id',
+          to: 'regions.id',
         },
       },
     }

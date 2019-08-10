@@ -21,7 +21,7 @@ export default {
     },
     listWines: (root, args) => {
       return new Promise((resolve, reject) => {
-        const result = list()
+        const result = list(args)
 
         if (result && result.error) {
           reject(result.error)

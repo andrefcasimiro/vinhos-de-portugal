@@ -14,7 +14,7 @@ type Props = {|
 const CountryFilter = ({ children, isOpen, toggleOpen, filters, updateFilter }) => {
   return (
     <React.Fragment>
-      <Menu isOpen={isOpen} close={toggleOpen} parameterKey="country" filters={filters}>
+      <Menu isOpen={isOpen} close={toggleOpen} parameterKey="countries" filters={filters}>
         <ListCountries>
           <CountryMenu updateFilter={updateFilter} />
         </ListCountries>
@@ -32,7 +32,7 @@ const enhancer: HOC<*, Props> = compose(
     },
     {
       updateFilter: () => (filters) => ({ filters }),
-    }
+    },
   )
 )
 

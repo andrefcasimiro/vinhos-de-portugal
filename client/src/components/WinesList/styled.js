@@ -14,6 +14,7 @@ export const TableWrap = styled.div`
 
 export const Tile = styled.div`
   display: flex;
+  position: relative;
   width: 16rem;
   height: 21rem;
   background: ${theme.color.lightCreme};

@@ -16,7 +16,7 @@ export const ModalWrapper = styled.div`
   -moz-background-clip: padding-box;
   background-clip: padding-box;
   position: fixed;
-  z-index: 999;
+  z-index: ${theme.zIndices.modal};
   height: 100vh;
   width: 100vw;
   display: flex;

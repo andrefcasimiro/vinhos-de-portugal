@@ -28,9 +28,9 @@ const Checkbox = ({ children, isChecked, handleSelect }) => {
 
 const enhancer: HOC<*, Props> = compose(
   withStateHandlers(
-    {
-      isChecked: false,
-    },
+    ({ isChecked }) => ({
+      isChecked: isChecked || false,
+    }),
     {
       toggleIsChecked: (props) => (isChecked: boolean) => ({ isChecked: !props.isChecked }),
     },
