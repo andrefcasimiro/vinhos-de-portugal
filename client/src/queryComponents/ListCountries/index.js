@@ -1,6 +1,6 @@
 import React from "react"
 import { Query } from "react-apollo"
-import { listCountriesQuery } from "data/countries/queries"
+import { listCountries } from "data/countries/queries"
 
 type Props = {
   children: React.Node,
@@ -10,7 +10,7 @@ type Props = {
 const ListCountries = ({ children, variables }: Props) => {
 
   return (
-    <Query query={listCountriesQuery} variables={variables}>
+    <Query query={listCountries} variables={variables}>
       {({ loading, error, data, fetchMore }) => {
         if (loading || !data) {
           return null

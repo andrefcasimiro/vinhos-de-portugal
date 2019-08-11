@@ -13,7 +13,6 @@ type Props = {|
 |}
 
 const Menu = ({ children, isOpen, close, withControls = true, parameterKey, filters = {} }: Props) => {
-  console.log('parameterKey: ', parameterKey)
   return (
     <ContextMenu isOpen={isOpen} close={close}>
       {children}

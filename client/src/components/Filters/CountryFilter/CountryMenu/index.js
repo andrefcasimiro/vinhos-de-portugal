@@ -1,6 +1,8 @@
 // @flow
 import React from "react"
 import { connect } from "react-redux"
+import withQuery from "hocs/withQuery"
+import { listCountries } from "data/countries/queries"
 import { compose, type HOC, withStateHandlers, withHandlers } from "recompose"
 import { applySearch } from "data/search/actions"
 import { selectSearchParameters } from "data/search/selectors"
@@ -8,9 +10,7 @@ import type { Country } from "data/countries/types"
 import Checkbox from "components/Checkbox"
 
 type Props = {|
-  data: {
-    listCountries: Country[],
-  },
+  data: Country[],
   updateFilter: Function,
 |}
 
@@ -19,8 +19,10 @@ const CountryMenu = ({ data, countries, handleFilter }) => {
     return null
   }
 
+  console.log('countries: ', countries)
+
   return (
-    data.listCountries.map((country, index) =>
+    data.map((country, index) =>
       <Checkbox key={index} onChange={() => handleFilter(country.id)} isChecked={countries.includes(country.id)} >
         {country.name}
       </Checkbox>
@@ -41,10 +43,14 @@ const mapDispatchToProps = {
 
 const enhancer: HOC<*, Props> = compose(
   connect(mapStateToProps, mapDispatchToProps),
+  withQuery(listCountries),
   withStateHandlers(
-    ({ searchParameters }) => ({
+    ({ searchParameters }) =>  {
+      console.log('search parameters: ', searchParameters)
+    return {
       countries: searchParameters.countries || [],
-    }),
+    }
+  },
     {
       setCountries: props => countries => ({ countries }),
     },
@@ -58,7 +64,6 @@ const enhancer: HOC<*, Props> = compose(
       // Update internal state
       props.setCountries(payload)
 
-      console.log(payload)
       // Update external state
       props.updateFilter(payload)
     },

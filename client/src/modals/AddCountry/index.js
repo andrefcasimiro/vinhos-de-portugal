@@ -1,6 +1,5 @@
 import React, { Component } from "reactn"
 import Form from "./Form"
-import ListCountries from "queryComponents/ListCountries"
 
 type Props = {
   isOpen: boolean,
@@ -34,13 +33,11 @@ class AddCountry extends Component <Props, *> {
 
   render() {
     return (
-      <ListCountries>
-        <Form
-          close={this.props.close}
-          onChange={this.handleChange}
-          values={this.state.values}
-        />
-      </ListCountries>
+      <Form
+        close={this.props.close}
+        onChange={this.handleChange}
+        values={this.state.values}
+      />
     )
   }
 }

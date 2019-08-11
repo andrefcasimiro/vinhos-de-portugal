@@ -11,9 +11,8 @@ type Props = {|
 |}
 
 const SearchButton = ({ children, onClick, active }: Props) => {
-
   return (
-    <StyledButton onClick={onClick} active={active}>
+    <StyledButton onClick={onClick} disabled={active} active={active}>
       {children}
     </StyledButton>
   )

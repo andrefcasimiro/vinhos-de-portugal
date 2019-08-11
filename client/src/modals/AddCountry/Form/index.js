@@ -7,9 +7,10 @@ import Submit from "componentsStyled/Forms/Submit"
 import { getText } from "data/dictionary/helpers"
 import { sanitizeString } from "data/validators/helpers"
 import { dictionaryKeys } from "data/dictionary/constants"
-import { listCountriesQuery } from "data/countries/queries"
 import { addCountryMutation } from "data/countries/mutations"
 import type { Country }from "data/countries/types"
+import withQuery from "hocs/withQuery"
+import { listCountries } from "data/countries/queries"
 
 type Props = {
   close: Function,
@@ -17,9 +18,7 @@ type Props = {
   values: {
     name: string,
   },
-  data: {
-    listCountries: Country[],
-  },
+  data: Country[],
 }
 
 const getErrorMessage = (errors: [], key: string) => {
@@ -34,7 +33,7 @@ const getErrorMessage = (errors: [], key: string) => {
 const Form = ({ close, data, onChange, values }: Props) => {
   const [language] = useGlobal("language")
 
-  const countriesList = data.listCountries.map(country => sanitizeString(country.name))
+  const countriesList = data.map(country => sanitizeString(country.name))
 
   let errors = []
 
@@ -76,7 +75,7 @@ const Form = ({ close, data, onChange, values }: Props) => {
           return err.map(error => console.log(error))
         }}
         refetchQueries={[{
-          query: listCountriesQuery,
+          query: listCountries,
           variables: {},
         }]}
       >
@@ -90,4 +89,4 @@ const Form = ({ close, data, onChange, values }: Props) => {
   )
 }
 
-export default Form
+export default withQuery(listCountries)(Form)
