@@ -21,3 +21,13 @@ export const mqMax = map(
   value => `@media (max-width: ${emify(value)})`,
   breakpoints,
 )
+
+type MediaType = "max" | "min"
+
+export const legacyMq = (mediaType: MediaType) => map(
+  value => mediaType === "max"
+    ? `@media (max-width: ${value}px)`
+    : `@media (min-width: ${value}px)`,
+  breakpoints,
+)
+
