@@ -19,7 +19,6 @@ export const getText = (
 
   switch (language) {
     case languages.ENGLISH:
-      console.log(dictionary[key], dictionary[key][subkey])
       return subkey
         ? dictionary[key][subkey].english
         : dictionary[key].english

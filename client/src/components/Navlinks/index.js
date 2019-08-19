@@ -15,7 +15,7 @@ const Navlinks = ({ menu }: Props) => {
     <Group>
       {Object.values(menu).map((option, index) => {
         return (
-          <Navlink to={option.path}>
+          <Navlink to={option.path} key={index}>
             {getText(language, option.key, option.subkey)}
           </Navlink>
         )

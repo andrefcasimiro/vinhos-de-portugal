@@ -1,8 +1,17 @@
 import React, { setGlobal } from "reactn"
 import { render } from "react-dom"
 import { BrowserRouter as Router } from "react-router-dom"
+// Apollo
+import { ApolloProvider } from "react-apollo"
+import client from "global/graphql/apolloClient"
 import App from "containers/App"
 import { languages } from "data/languages/constants"
+import { sessionItems } from "data/sessions/constants"
+// Redux
+import { Provider } from "react-redux"
+import { store, persistor } from "./global/store"
+import { PersistGate } from "redux-persist/es/integration/react"
+// Font
 import FontFaceObserver from "fontfaceobserver"
 import { defaultFont } from "global/config"
 import "assets/fonts/index.css"
@@ -16,16 +25,22 @@ fontObserver.load()
   .catch(e => console.log(e.message))
 
 setGlobal({
-  language: languages.PORTUGUESE,
+  language: localStorage.getItem(sessionItems.LANGUAGE) || languages.PORTUGUESE,
 })
 
 const element = document.getElementById("root")
 
 if (element) {
   render(
-      <Router>
-        <App />
-      </Router>,
+    <ApolloProvider client={client}>
+      <PersistGate persistor={persistor} loading={null}>
+        <Provider store={store}>
+          <Router>
+            <App />
+          </Router>
+        </Provider>
+      </PersistGate>
+    </ApolloProvider>,
     element,
   )
 }
