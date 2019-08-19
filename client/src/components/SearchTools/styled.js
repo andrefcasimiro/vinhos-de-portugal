@@ -6,18 +6,18 @@ export const Wrap = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
+  justify-content: flex-start;
   background: ${theme.color.lightCreme};
   border: .05rem solid ${theme.color.darkGray};
   min-height: 1.5rem;
-  justify-content: flex-start;
 `
 
 export const Title = styled.h2`
   display: flex;
+  align-items: center;
   font-size: 1.4rem;
   margin: 1rem;
   padding: 0;
-  align-items: center;
   color: ${theme.color.veryDarkerGray};
 `
 

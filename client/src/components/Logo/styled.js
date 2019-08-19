@@ -1,7 +1,7 @@
 // @flow
 import styled from "styled-components"
 import theme from "global/theme"
-import { mqMax } from "common/mediaQueries"
+import { mq } from "common/mediaQueries"
 
 export const LogoContainer = styled.h1`
   display: flex;
@@ -9,22 +9,22 @@ export const LogoContainer = styled.h1`
   color: ${theme.color.white};
   font-size: 8.2rem;
 
-  ${mqMax.tabletWide} {
+  ${mq("max").tabletWide} {
     margin-bottom: -2rem;
     font-size: 6rem;
   }
 
-  ${mqMax.tablet} {
+  ${mq("max").tablet} {
     margin-bottom: -2rem;
     font-size: 5rem;
   }
 
-  ${mqMax.phoneWide} {
+  ${mq("max").phoneWide} {
     margin-bottom: -2rem;
     font-size: 4rem;
   }
 
-  ${mqMax.phone} {
+  ${mq("max").phone} {
     margin-bottom: -2rem;
     font-size: 3.5rem;
   }

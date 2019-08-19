@@ -10,11 +10,11 @@ type Props = {|
   children: React.Node,
 |}
 
-const CountryFilter = ({ children, isOpen, toggleOpen, filters, updateFilter }) => {
+const CountryFilter = ({ children, isOpen, toggleOpen, localValues, setLocalValues }) => {
   return (
     <React.Fragment>
-      <Menu isOpen={isOpen} close={toggleOpen} parameterKey="countries" filters={filters}>
-        <CountryMenu updateFilter={updateFilter} />
+      <Menu isOpen={isOpen} close={toggleOpen} parameterKey="countries" localValues={localValues}>
+        <CountryMenu setLocalValues={setLocalValues} />
       </Menu>
       <SearchButton active={isOpen} onClick={toggleOpen} isOpen={isOpen}>Country</SearchButton>
     </React.Fragment>
@@ -25,10 +25,10 @@ const enhancer: HOC<*, Props> = compose(
   withOpen,
   withStateHandlers(
     {
-      filters: [],
+      localValues: [],
     },
     {
-      updateFilter: () => (filters) => ({ filters }),
+      setLocalValues: () => (localValues) => ({ localValues }),
     },
   )
 )

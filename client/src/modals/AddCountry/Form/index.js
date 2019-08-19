@@ -33,6 +33,10 @@ const getErrorMessage = (errors: [], key: string) => {
 const Form = ({ close, data, onChange, values }: Props) => {
   const [language] = useGlobal("language")
 
+  if (!data) {
+    return null
+  }
+
   const countriesList = data.map(country => sanitizeString(country.name))
 
   let errors = []

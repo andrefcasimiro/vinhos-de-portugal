@@ -1,15 +1,9 @@
 // @flow
 import { graphql } from "react-apollo"
-import { pathOr, always } from "ramda"
-import { compose, branch, renderComponent, type HOC } from "recompose"
+import { compose, type HOC } from "recompose"
+import { always } from "ramda"
 import type { Query } from "global/graphql/types"
 import { transformResponse } from "global/graphql/helpers"
-
-const notFound = data => {
-  const errors = pathOr([], ["error", "graphQLErrors"], data)
-
-  return errors.some(x => pathOr("", ["data", "code"], x).endsWith("NOT_FOUND"))
-}
 
 type Config<Outter, Variables> = {
   noLoader?: boolean,
@@ -26,7 +20,6 @@ type Added<Data> = {
   loadingMore: boolean,
   count: number,
   loadMore: void => void,
-  notFound: boolean,
   refetch: void => void,
 }
 
@@ -37,8 +30,6 @@ function withQuery<Outter, Data, Variables>(
 ): HOC<{ ...$Exact<Added<Data>>, ...$Exact<Outter> }, Outter> {
   const { gql, selector, transform, options = always({}) } = query
   const {
-    noLoader = false,
-    noEmpty = false,
     variables = always({}),
     config = {},
   } = configuration
@@ -53,7 +44,6 @@ function withQuery<Outter, Data, Variables>(
         props.data.networkStatus === 2 ||
         props.data.networkStatus === 4,
       loadingMore: props.data.networkStatus === 3,
-      notFound: notFound(props.data),
     }),
     options: props => ({
       notifyOnNetworkStatusChange: true, // to update loading when fetching more

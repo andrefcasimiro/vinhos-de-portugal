@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { connect } from "react-redux"
-import CountryFilter from "components/Filters/CountryFilter"
+import CountryFilter from "components/SearchFilters/CountryFilter"
 import { selectSearchParameters } from "data/search/selectors"
 import {
   Wrap,
@@ -15,21 +15,17 @@ type Props = {|
 |}
 
 const SearchTools = ({ children, searchParameters }: Props) => {
-
   return (
-    <React.Fragment>
-      <Wrap>
-        <Title>Discover wines</Title>
-        <SearchInput />
-        <SearchInputButton />
-        <CountryFilter />
-      </Wrap>
-    </React.Fragment>
+    <Wrap>
+      <Title>Discover wines</Title>
+      <SearchInput />
+      <SearchInputButton />
+      <CountryFilter />
+    </Wrap>
   )
 }
 
 const mapStateToProps = state => {
-
   return {
     searchParameters: selectSearchParameters(state),
   }

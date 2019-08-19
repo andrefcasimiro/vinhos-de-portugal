@@ -3,15 +3,15 @@ import { path, identity, isNil } from "ramda"
 import type { Query, Mutation } from "./types"
 import client from "./apolloClient"
 
-export const getDataFromSelector = (selector: string[]) =>
-  path(["data"].concat(selector))
-
 export const transformResponse = (
   selector: string[] = [],
   transform?: Function = identity,
 ) => (data: Object) => {
-  const selectedData = getDataFromSelector(selector)(data)
-  return isNil(selectedData) ? undefined : transform(selectedData)
+  const selectedData = path(["data"].concat(selector))(data)
+
+  return isNil(selectedData)
+    ? undefined
+    : transform(selectedData)
 }
 
 export function query<Result, Parameters>(
@@ -20,7 +20,7 @@ export function query<Result, Parameters>(
 ): Promise<Result> {
   return client
     .query({ query: gql, variables })
-    .then(res => res)
+    .then(response => response)
 }
 
 export function mutate<Result, Parameters>(
@@ -29,5 +29,5 @@ export function mutate<Result, Parameters>(
 ): Promise<Result> {
   return client
     .mutate({ mutation: gql, variables })
-    .then(res => res)
+    .then(response => response)
 }

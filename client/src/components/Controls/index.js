@@ -9,7 +9,7 @@ type Props = {|
   isOpen: boolean,
   close: Function,
   parameterKey: string,
-  filters: any,
+  localValues: any,
 |}
 
 const Controls = ({
@@ -17,15 +17,14 @@ const Controls = ({
   isOpen,
   close,
   parameterKey,
-  filters,
+  localValues,
   handleApply,
 }) => {
-
   return (
       <Wrapper>
         <Content>
           <Button onClick={close}>Cancel</Button>
-          <Button onClick={() => handleApply({[parameterKey]: filters})}>Apply</Button>
+          <Button onClick={() => handleApply({[parameterKey]: localValues})}>Apply</Button>
         </Content>
       </Wrapper>
   )

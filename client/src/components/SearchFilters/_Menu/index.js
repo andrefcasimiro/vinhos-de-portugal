@@ -9,14 +9,14 @@ type Props = {|
   close: Function,
   withControls?: boolean,
   parameterKey?: string,
-  filters?: any, // filter to be applied in the search state
+  localValues?: mixed, // filter to be applied in the search state
 |}
 
-const Menu = ({ children, isOpen, close, withControls = true, parameterKey, filters = {} }: Props) => {
+const Menu = ({ children, isOpen, close, withControls = true, parameterKey, localValues = {} }: Props) => {
   return (
     <ContextMenu isOpen={isOpen} close={close}>
       {children}
-      {withControls && <Controls isOpen={isOpen} close={close} parameterKey={parameterKey} filters={filters} />}
+      {withControls && <Controls isOpen={isOpen} close={close} parameterKey={parameterKey} localValues={localValues} />}
     </ContextMenu>
   )
 }

@@ -1,6 +1,6 @@
 // @flow
 import styled, { keyframes } from "styled-components"
-import { mqMax } from "common/mediaQueries"
+import { mq } from "common/mediaQueries"
 import theme from "global/theme"
 
 const modalFadeDuration = 250
@@ -84,7 +84,7 @@ export const ModalClose = styled.div`
 export const ModalContent = styled.div`
   padding: 0.5rem;
 
-  ${mqMax.tabletWide} {
+  ${mq("max").tabletWide} {
     width: 20rem;
     left: calc(50% - 10.5rem);
   }
