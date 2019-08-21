@@ -1,4 +1,5 @@
 import gql from "graphql-tag"
+import { listWinesQuery } from "data/wines/queries"
 
 export const addCountryMutation = {
   gql: gql`
@@ -8,4 +9,5 @@ export const addCountryMutation = {
       }
     }
   `,
+  refetch: [listWinesQuery],
 }

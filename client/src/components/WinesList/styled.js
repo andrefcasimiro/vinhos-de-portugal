@@ -62,4 +62,9 @@ export const Image = styled.div`
   background: ${theme.color.lighterCreme};
   border: .1rem solid ${theme.color.darkGray};
   border-radius: .25rem;
+
+  img {
+    width: 100%;
+    padding: 0.5rem;
+  }
 `

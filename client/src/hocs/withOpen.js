@@ -7,11 +7,11 @@ type Added = {|
   toggleOpen: void => mixed,
 |}
 
-function withOpen<T>(
+const withOpen = (
   // $ExpectError
   WrappedComponent: Component<{ ...$Exact<T>, ...$Exact<Added> }>,
   // $ExpectError
-): Component<T> {
+): Component<T> => {
   const enhance = withStateHandlers(
     {
       isOpen: false,

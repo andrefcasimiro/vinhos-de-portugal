@@ -1,28 +1,27 @@
 // @flow
 import { graphql } from "react-apollo"
-import { compose, type HOC } from "recompose"
+import { compose, type Component } from "recompose"
+import { always } from "ramda"
 import type { Query } from "global/graphql/types"
 import { transformResponse } from "global/graphql/helpers"
 
-type Config<Outter, Variables> = {
-  variables?: Outter => Variables,
-}
-
-type Added<Data> = {
+type Added = {
   data: Data,
   loading: boolean,
   loadMore: void => void,
   refetch: void => void,
 }
 
-function withQuery<Outter, Data, Variables>(
+const withQuery = (
   query: Query<Data, Variables>,
-  configuration: Config<Outter, Variables> = {},
-  // $ExpectError
-): HOC<{ ...$Exact<Added<Data>>, ...$Exact<Outter> }, Outter> {
+  configuration: {
+    variables?: Outter => Variables,
+  },
+): Component<Added> => {
   const { gql, selector, transform } = query
+  const variables = (configuration && configuration.variables) || always({})
 
-  const customGraphqlHoc = graphql(gql, {
+  const queryHOC = graphql(gql, {
     props: props => ({
       data: transformResponse(selector, transform)(props),
       refetch: () => props.data.refetch(),
@@ -30,10 +29,15 @@ function withQuery<Outter, Data, Variables>(
         props.data.networkStatus === 2 ||
         props.data.networkStatus === 4,
     }),
+    options: props => ({
+      variables: {
+        ...variables(props),
+      },
+    }),
   })
 
   return compose(
-    customGraphqlHoc,
+    queryHOC,
   )
 }
 

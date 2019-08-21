@@ -2,10 +2,6 @@ import gql from "graphql-tag"
 import type { Wine } from "./types"
 import type { Query } from "global/graphql/types"
 
-type ListWinesFilter = {
-  countries: number,
-}
-
 export const listWinesQuery: Query<Wine[]> = {
   gql: gql`
     query listWinesQuery($filter: ListWinesFilter) {

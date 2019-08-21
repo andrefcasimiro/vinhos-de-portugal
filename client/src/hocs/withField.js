@@ -30,12 +30,12 @@ export type Props = {
   label: string,
 }
 
-function withField(
+const withField = (
   C: Component<{|
     ...$Exact<Outter, ReqOutter>,
     ...$Exact<Added>,
   |}>,
-): Component<Outter> {
+): Component<Outter> => {
   return props => (
     <Field
       {...props}

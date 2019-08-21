@@ -5,6 +5,8 @@ import withQuery from "hocs/withQuery"
 import { connect } from "react-redux"
 import { listWinesQuery } from "data/wines/queries"
 import { selectSearchParameters } from "data/search/selectors"
+import red_bottle from "assets/images/red_bottle.jpg"
+import white_bottle from "assets/images/white_bottle.jpg"
 import {
   Wrap,
   TableWrap,
@@ -28,7 +30,7 @@ const WinesList = ({ children, data }) => {
             <Section>
               <Title>{wine.name}</Title>
               <Subtitle>{wine.producer}</Subtitle>
-              <Image></Image>
+              <Image><img src={wine.grape === "White" ? white_bottle : red_bottle } alt="" /></Image>
             </Section>
           </Tile>
         )}
@@ -48,10 +50,9 @@ const mapDispatchToProps = {}
 
 const enhancer: HOC<*, {}> = compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withQuery(
-    listWinesQuery,
+  withQuery(listWinesQuery,
     {
-      variables: (props) => ({ filter: props.searchParameters }),
+      variables: props => ({ filter: props.searchParameters }),
     },
   ),
 )

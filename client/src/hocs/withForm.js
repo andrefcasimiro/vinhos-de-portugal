@@ -26,9 +26,9 @@ type Configuration = {
   onError?: ({ ...$Exact<Props>, ...$Exact<Added> }) => (error: string) => mixed,
 }
 
-function withForm(
+const withForm = (
   configuration: Configuration,
-): HOC<{ ...$Exact<Outter>, ...$Exact<Added> }, Outter> {
+): HOC<{ ...$Exact<Outter>, ...$Exact<Added> }, Outter> => {
   const {
     schema,
     onSubmit,

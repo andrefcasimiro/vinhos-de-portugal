@@ -21,8 +21,8 @@ export const dictionaryKeys = {
 export const dictionary = {
   // App logo
   logo: {
-    english: "The Good Drinker",
-    portuguese: "O Bom Bebedor",
+    english: "Wines Of Portugal",
+    portuguese: "Vinhos de Portugal",
   },
   // Navlinks
   navlinks: {

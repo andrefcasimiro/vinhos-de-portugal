@@ -22,9 +22,9 @@ type Added = {
   submitMutation: Variables => Promise,
 }
 
-function withMutation(
+const withMutation = (
   mutation: Mutation,
-): HOC<{ ...$Exact<Added>, ...$Exact<Outter> }, Outter> {
+): HOC<{ ...$Exact<Added>, ...$Exact<Outter> }, Outter> => {
   const {
     gql,
     refetch = [],
