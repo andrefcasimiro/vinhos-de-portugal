@@ -4,10 +4,14 @@ import {
   SubmitWrap,
   SubmitButton,
 } from "./styled"
+import Spinner from "componentsStyled/Spinner"
 
-const Submit = ({ onClick, children, disabled }) => (
+const Submit = ({ onClick, children, disabled, loading }) => (
   <SubmitWrap>
-    <SubmitButton onClick={onClick} disabled={disabled}>{children}</SubmitButton>
+    <SubmitButton type="submit" onClick={onClick} disabled={disabled || loading}>
+      {children}
+      {loading && <Spinner />}
+    </SubmitButton>
   </SubmitWrap>
 )
 

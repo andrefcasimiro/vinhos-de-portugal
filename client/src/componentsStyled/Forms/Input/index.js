@@ -1,5 +1,6 @@
 // @flow
 import React from "react"
+import withField from "hocs/withField"
 import {
   InputWrap,
   Label,
@@ -7,7 +8,7 @@ import {
   StyledInput,
 } from "./styled"
 
-const Input = ({ name, label, onChange, value, errorMessage }) => (
+const Input = ({ name, label, value, onChange, error }) => (
   <InputWrap>
     <Label>{label}</Label>
     <StyledInput
@@ -16,8 +17,8 @@ const Input = ({ name, label, onChange, value, errorMessage }) => (
       onChange={onChange}
       value={value}
     />
-    {errorMessage && <Error>{errorMessage}</Error>}
+    {error && <Error>{error}</Error>}
   </InputWrap>
 )
 
-export default Input
+export default withField(Input)

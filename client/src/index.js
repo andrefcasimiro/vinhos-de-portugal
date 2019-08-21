@@ -1,18 +1,14 @@
-import React, { setGlobal } from "reactn"
+// @flow
+import React from "react"
 import { render } from "react-dom"
 import { BrowserRouter as Router } from "react-router-dom"
-// Apollo
-import { ApolloProvider } from "react-apollo"
+import { ApolloProvider } from "react-apollo" // Apollo
 import client from "global/graphql/apolloClient"
 import App from "containers/App"
-import { languages } from "data/languages/constants"
-import { sessionItems } from "data/sessions/constants"
-// Redux
-import { Provider } from "react-redux"
+import { Provider } from "react-redux" // Redux
 import { store, persistor } from "./global/store"
 import { PersistGate } from "redux-persist/es/integration/react"
-// Font
-import FontFaceObserver from "fontfaceobserver"
+import FontFaceObserver from "fontfaceobserver" // Font
 import { defaultFont } from "global/config"
 import "assets/fonts/index.css"
 
@@ -22,11 +18,7 @@ fontObserver.load()
     const body = document.body
     body && body.classList.add("fontLoaded")
   })
-  .catch(e => console.log(e.message))
-
-setGlobal({
-  language: localStorage.getItem(sessionItems.LANGUAGE) || languages.PORTUGUESE,
-})
+  .catch(event => console.log(event.message))
 
 const element = document.getElementById("root")
 

@@ -1,5 +1,5 @@
 // @flow
-import React from "reactn"
+import React from "react"
 import AddCountry from "components/Buttons/AddCountry"
 import {
   Wrap,

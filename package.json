@@ -34,7 +34,6 @@
     "graphql": "^14.4.2",
     "graphql-tools": "^4.0.5",
     "merge-graphql-schemas": "^1.6.2-bdaf070.0",
-    "objection": "^1.6.9",
-    "validator": "^11.1.0"
+    "objection": "^1.6.9"
   }
 }

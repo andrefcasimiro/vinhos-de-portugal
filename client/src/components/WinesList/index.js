@@ -1,5 +1,5 @@
 // @flow
-import React from "reactn"
+import React from "react"
 import { compose, type HOC } from "recompose"
 import withQuery from "hocs/withQuery"
 import { connect } from "react-redux"

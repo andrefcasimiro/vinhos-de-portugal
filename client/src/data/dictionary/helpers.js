@@ -4,7 +4,7 @@ import { languages } from "data/languages/constants"
 
 /**
  * Returns a translated text based on the selected language of our app state
- * @param {*} language - The selected language stored in our reactn global state
+ * @param {*} language - The selected language stored in our redux store state
  * @param {*} key - The key to access our dictionary
  * @param {*} subkey - If set, reaches for a nested key inside another key
  */

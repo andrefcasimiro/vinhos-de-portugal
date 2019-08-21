@@ -3,11 +3,24 @@ import { path, identity, isNil } from "ramda"
 import type { Query, Mutation } from "./types"
 import client from "./apolloClient"
 
+/**
+ * Combines the data property with a dynamic identifier and returns its content
+ * @param {Array} selector - the identifier nested in the data object
+ */
+export const getDataFromSelector = (selector: Array<string>) =>
+  path(["data"].concat(selector))
+
+/**
+ * Fetches the content nested inside the data object
+ * And applies a transform function if there is one.
+ * @param {Array} selector - An array of selectors to search inside the data object
+ * @param {Function} transform - A function that applies transformations to the retrieved data before it is returned
+ */
 export const transformResponse = (
-  selector: string[] = [],
+  selector: Array<string> = [],
   transform?: Function = identity,
 ) => (data: Object) => {
-  const selectedData = path(["data"].concat(selector))(data)
+  const selectedData = getDataFromSelector(selector)(data)
 
   return isNil(selectedData)
     ? undefined
@@ -20,7 +33,6 @@ export function query<Result, Parameters>(
 ): Promise<Result> {
   return client
     .query({ query: gql, variables })
-    .then(response => response)
 }
 
 export function mutate<Result, Parameters>(
@@ -29,5 +41,4 @@ export function mutate<Result, Parameters>(
 ): Promise<Result> {
   return client
     .mutate({ mutation: gql, variables })
-    .then(response => response)
 }

@@ -33,12 +33,14 @@
     "apollo-client": "^2.6.3",
     "apollo-upload-client": "^11.0.0",
     "fontfaceobserver": "^2.1.0",
+    "formik": "^1.5.8",
     "graphql-tag": "^2.10.1",
     "react-apollo": "^2.5.8",
     "react-redux": "^7.1.0",
     "reactn": "^2.1.5",
     "redux": "^4.0.4",
     "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.27.0"
   }
 }

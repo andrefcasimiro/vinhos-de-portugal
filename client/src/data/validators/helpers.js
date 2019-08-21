@@ -1,7 +1,7 @@
-export const sanitizeString = (str: string): string => {
-  if (!str) {
-    return ""
-  }
+// @flow
+// @flow
+import * as yup from "yup"
+import { stringRequiredText } from "./texts"
 
-  return str.toLowerCase().trim()
-}
+export const stringRequired: Validator<string> = yup.string()
+  .required(stringRequiredText)

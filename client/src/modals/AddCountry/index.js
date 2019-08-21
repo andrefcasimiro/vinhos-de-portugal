@@ -1,45 +1,48 @@
-import React, { Component } from "reactn"
-import Form from "./Form"
+// @flow
+import React from "react"
+import { compose, type HOC } from "recompose"
+import * as yup from "yup"
+import withMutation from "hocs/withMutation"
+import withForm from "hocs/withForm"
+import Input from "componentsStyled/Forms/Input"
+import Submit from "componentsStyled/Forms/Submit"
+import { addCountryMutation } from "data/countries/mutations"
+import { stringRequiredText } from "data/validators/texts"
+import Modal from "modals/_Modal"
 
 type Props = {
   isOpen: boolean,
-  toggleOpen: Function,
+  close: Function,
 }
 
-// We should first query our back end for a list of countries
-// and use the data for validation in our form to avoid hitting the back end
-// if the country the person is trying to insert already exists.
-class AddCountry extends Component <Props, *> {
-  constructor(props) {
-    super(props)
+const AddCountry = ({ isOpen, close, isSubmitting, onSubmit }) => (
+  <Modal close={close} title={"add country"}>
+    <Input
+      name="countryName"
+      placeholder="Enter a country name"
+      label="Country Name"
+    />
+    <Submit loading={isSubmitting}>Add Country</Submit>
+  </Modal>
+)
 
-    this.state = {
-      values: {
-        name: undefined,
-      },
-    }
-  }
-
-  handleChange = event => {
-    const { value, name } = event.target
-
-    this.setState({
-      values: {
-        ...this.state.values,
-        [name]: value,
-      },
-    })
-  }
-
-  render() {
-    return (
-      <Form
-        close={this.props.close}
-        onChange={this.handleChange}
-        values={this.state.values}
-      />
-    )
-  }
+const schema = {
+  countryName: yup.string().required(stringRequiredText).min(3),
 }
 
-export default AddCountry
+const enhancer: HOC<*, Props> = compose(
+  withMutation(addCountryMutation),
+  withForm({
+    schema,
+    onSubmit: props => values => {
+      const input = {
+        name: values.countryName,
+      }
+
+      return props.submitMutation({ input })
+    },
+    onSuccess: props => props.close,
+  }),
+)
+
+export default enhancer(AddCountry)

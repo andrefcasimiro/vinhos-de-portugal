@@ -1,23 +1,12 @@
 // @flow
-export type Query<Data, Params = empty> = {|
+export type Query = {|
   gql: any,
   selector?: string[],
   transform?: any => Data,
-  pagination?: string[],
-  options?: Function,
 |}
 
-export type Mutation<Variables, Result = empty> = {
+export type Mutation = {
   gql: any,
   selector?: string[],
   refetch?: Query<any>[],
-  transform?: any => Result,
 }
-
-export type GraphqlError = {|
-  graphQLErrors: {
-    data: {
-      code: string,
-    },
-  }[],
-|}

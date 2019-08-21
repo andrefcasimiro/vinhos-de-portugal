@@ -1,11 +1,12 @@
 import * as actions from "./actions"
+import { languages } from "./constants"
 
 export type LanguageState = {
   language: string,
 }
 
 const initialState: LanguageState = {
-  language: undefined,
+  language: languages.PORTUGUESE,
 }
 
 type Action = ExtractActionTypes<typeof actions>
