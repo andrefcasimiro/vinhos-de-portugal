@@ -18,7 +18,7 @@
   "dependencies": {
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "knex": "^0.19.0",
+    "knex": "^2.4.0",
     "nodemon": "^1.19.1",
     "pg": "^7.11.0",
     "pg-native": "^3.0.0"
